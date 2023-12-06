@@ -5,7 +5,7 @@ export const placeOrder = (token, subTotal) => async (dispatch, getState) => {
   const currentUser = getState().loginUserReducer.currentUser;
   const cartItems = getState().cartReducer.cartItems;
   try {
-    await axios.post(${url}/api/orders/placeorder, {
+    await axios.post(`${url}/api/orders/placeorder`, {
       token,
       subTotal,
       currentUser,
@@ -25,7 +25,7 @@ export const getUserOrders = () => async (dispatch, getState) => {
     type: "USER_ORDER_REQUEST",
   });
   try {
-    const response = await axios.post(${url}/api/orders/getuserorder, {
+    const response = await axios.post(`${url}/api/orders/getuserorder`, {
       userid: currentUser._id,
     });
     // console.log(response);
@@ -40,7 +40,7 @@ export const getAllOrders = () => async (dispatch, getState) => {
     type: "ALL_ORDER_REQUEST",
   });
   try {
-    const response = await axios.get(${url}/api/orders/alluserorder);
+    const response = await axios.get(`${url}/api/orders/alluserorder`);
     dispatch({ type: "ALL_ORDER_SUCCESS", payload: response.data });
   } catch (error) {
     dispatch({ type: "ALL_ORDER_FAIL", payload: error });
@@ -53,9 +53,9 @@ export const deliverOrder = (orderid) => async (dispatch, getState) => {
     type: "GET_ALL_ORDER_REQUEST",
   });
   try {
-    await axios.post(${url}/api/orders/deliverorder, { orderid });
+    await axios.post(`${url}/api/orders/deliverorder`, { orderid });
     alert("Deliverd Success");
-    const orders = await axios.get(`${url}/api/orders/alluserorder");
+    const orders = await axios.get(`${url}/api/orders/alluserorder`);
     dispatch({ type: "GET_ALL_ORDER_SUCCESS", payload: orders.data });
     window.location.href = "/admin/orderlist";
   } catch (error) {
