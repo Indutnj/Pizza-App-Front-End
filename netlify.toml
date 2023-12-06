@@ -1,6 +1,6 @@
 [build]
   command = "npm i"  
-  publish = "dist"           
+          
   node_version = "14"
 
 [build.environment]
