@@ -1,4 +1,4 @@
-import {React,useEffect} from "react";
+import {React} from "react";
 //import { MdLocalOffer } from "react-icons/md";
 import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
