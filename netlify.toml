@@ -1,17 +1,14 @@
 [build]
-  command = "npm i"  
-  publish = "."    
+  base = "public"
+  publish = "build"
+  command = "npm i"
   node_version = "14"
 
-[build.environment]
-  NODE_ENV = "Dev"     
+[context.production.environment]
+  NODE_ENV = "production"
 
-[[redirects]]
-  from = "/old-path"
-  to = "/new-path"
-  status = 301
+[context.deploy-preview]
+  command = "npm run build-preview"
 
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
+[context.deploy-preview.environment]
+  NODE_ENV = "production"
