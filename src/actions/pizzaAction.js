@@ -1,6 +1,7 @@
 import axios from "axios";
 import swal from "sweetalert";
 const url="https://pizza-application-itbm.onrender.com";
+//const url="http://localhost:8080";
 export const getAllPizzas = () => async (dispatch) => {
   dispatch({ type: "GET_PIZZAS_REQUEST" });
   try {
@@ -38,7 +39,7 @@ export const updatePizza = (updatedPizza) => async (dispatch) => {
       updatedPizza,
     });
     dispatch({ type: "UPDATE_PIZZABYID_SUCCESS", payload: response.data });
-    window.location.href = "/admin/pizzalist";
+    window.location.href =  `${url}/admin/pizzalist`;
   } catch (err) {
     dispatch({ type: "UPDATE_PIZZABYID_FAIL", payload: err });
   }
@@ -48,7 +49,7 @@ export const deletePizza = (pizzaId) => async (dispatch) => {
   try {
     await axios.post(`${url}/api/pizzas/deletepizza`, { pizzaId });
     swal("Pizza Deleted Succss!", "success");
-    window.location.href = "/admin/pizzalist";
+    window.location.href = `${url}/admin/pizzalist`;
     // console.log(res);
   } catch (error) {
     swal("Errro While Deleteing Pizza");
